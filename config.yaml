@@ -28,6 +28,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+        resources:
+          request: 
+            cpu: 100m # 0.1 CPU
+            memory: 64Mi # bytes
 ---
 apiVersion: v1
 kind: Service
