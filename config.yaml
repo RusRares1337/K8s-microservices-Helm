@@ -28,10 +28,13 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
-        resources:
-          request: 
+        resources: 
+          request: # resource allocation
             cpu: 100m # 0.1 CPU
-            memory: 64Mi # bytes
+            memory: 64Mi # MebiBytes (Mi or MiB)
+          limits: # resource limit 
+            cpu: 200m
+            memory: 128Mi
 ---
 apiVersion: v1
 kind: Service
@@ -290,10 +293,17 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:9555"] # app executable is inside /bin/... & port of app
-       readinessProbe:
+        readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:9555"] # app executable is inside /bin/... & port of app
+        resources: 
+            request: # resource allocation
+              cpu: 200m # 0.1 CPU
+              memory: 180Mi # MebiBytes (Mi or MiB)
+            limits: # resource limit 
+              cpu: 300m
+              memory: 300Mi
 ---
 apiVersion: v1
 kind: Service
@@ -384,6 +394,13 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           tcpSocket:
            port: 6379
+        resources: 
+            request: # resource allocation
+              cpu: 700m # 0.1 CPU
+              memory: 200Mi # MebiBytes (Mi or MiB)
+            limits: # resource limit 
+              cpu: 125m
+              memory: 300Mi
       volumes: # creating a volume "emptyDir" that automatically gets created when pod is created.
       - name: redis-data
         emptyDir: {}        
