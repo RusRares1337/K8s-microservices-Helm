@@ -4,6 +4,7 @@ kind: Deployment
 metadata:
   name: emailservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: emailservice
@@ -54,6 +55,7 @@ kind: Deployment
 metadata:
   name: recommendationservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: recommendationservice
@@ -99,6 +101,7 @@ kind: Deployment
 metadata:
   name: productcatalogservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: productcatalogservice
@@ -144,6 +147,7 @@ kind: Deployment
 metadata:
   name: paymentservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: paymentservice
@@ -478,6 +482,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
