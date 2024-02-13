@@ -103,7 +103,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:3550"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -142,7 +142,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -181,7 +181,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:7000"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -220,7 +220,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -259,7 +259,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:9555"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -300,7 +300,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:7070"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -339,7 +339,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:6379"] # app executable is inside /bin/... & port of app
       volumes: # creating a volume "emptyDir" that automatically gets created when pod is created.
       - name: redis-data
         emptyDir: {}
@@ -394,7 +394,7 @@ spec:
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+            command: ["/bin/grpc_health_probe", "-addr=:5050"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
