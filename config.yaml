@@ -110,12 +110,14 @@ spec:
           value: "3550"
         livenessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
-          exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:3550"] # app executable is inside /bin/... & port of app
+          httpGet: #http endpoint inside app on port 3550, from url below you can check if app is healthy or not.
+            path: /health
+            port: 3550
         readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:3550"] # app executable is inside /bin/... & port of app
+          
 ---
 apiVersion: v1
 kind: Service
@@ -369,13 +371,15 @@ spec:
         - name: redis-data
           mountPath: /data # path inside the container where we`re mounting volume.
         livenessProbe:
+          initialDelaySeconds: 5 # wait 5 seconds then apply the 1st probe
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
-          exec: 
-            command: ["/bin/grpc_health_probe", "-addr=:6379"] # app executable is inside /bin/... & port of app
+          tcpSocket:
+            port: 6379
         readinessProbe:
-           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
-           exec: 
-             command: ["/bin/grpc_health_probe", "-addr=:6379"] # app executable is inside /bin/... & port of app      
+          initialDelaySeconds: 5 # wait 5 seconds then apply the 1st probe
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          tcpSocket:
+           port: 6379
       volumes: # creating a volume "emptyDir" that automatically gets created when pod is created.
       - name: redis-data
         emptyDir: {}        
