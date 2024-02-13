@@ -24,6 +24,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+        readinessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -62,6 +66,10 @@ spec:
         - name: PRODUCT_CATALOG_SERVICE_ADDR
           value: "productcatalogservice:3550"
         livenessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+        readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
@@ -104,6 +112,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:3550"] # app executable is inside /bin/... & port of app
+        readinessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:3550"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -140,6 +152,10 @@ spec:
         - name: PORT
           value: "50051"
         livenessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
+       readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
@@ -182,6 +198,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:7000"] # app executable is inside /bin/... & port of app
+       readinessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:7000"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -221,6 +241,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
+       readinessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:50051"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -257,6 +281,10 @@ spec:
         - name: PORT
           value: "9555"
         livenessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:9555"] # app executable is inside /bin/... & port of app
+       readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:9555"] # app executable is inside /bin/... & port of app
@@ -301,6 +329,10 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:7070"] # app executable is inside /bin/... & port of app
+       readinessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:7070"] # app executable is inside /bin/... & port of app
 ---
 apiVersion: v1
 kind: Service
@@ -340,10 +372,13 @@ spec:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:6379"] # app executable is inside /bin/... & port of app
+        readinessProbe:
+           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+           exec: 
+             command: ["/bin/grpc_health_probe", "-addr=:6379"] # app executable is inside /bin/... & port of app      
       volumes: # creating a volume "emptyDir" that automatically gets created when pod is created.
       - name: redis-data
-        emptyDir: {}
-        
+        emptyDir: {}        
 ---
 apiVersion: v1
 kind: Service
@@ -392,6 +427,10 @@ spec:
         - name: CART_SERVICE_ADDR
           value: "cartservice:7070"
         livenessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:5050"] # app executable is inside /bin/... & port of app
+       readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:5050"] # app executable is inside /bin/... & port of app
@@ -445,6 +484,10 @@ spec:
         - name: AD_SERVICE_ADDR
           value: "adservice:9555"
         livenessProbe:
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          exec: 
+            command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
+       readinessProbe:
           periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
           exec: 
             command: ["/bin/grpc_health_probe", "-addr=:8080"] # app executable is inside /bin/... & port of app
