@@ -18,7 +18,7 @@ spec:
         ports:
         - containerPort: {{ .Values.containerPort }}
         env:
-        {{-range .Values.containerEnvVars}}
-        - name: {{ .key }}
+        {{- range .Values.containerEnvVars}} # range will take variable list defined (containerEnvVars) as an attribute, and it will go through that list and give us access to each element.
+        - name: {{ .name }}
           value: {{ .value | quote }} #value has to be always in "" , so with function quote we can do this
-        {{-end}}
+        {{- end}}
