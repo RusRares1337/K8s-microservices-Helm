@@ -1,0 +1,4 @@
+appName: redis
+appReplicas: 2
+
+

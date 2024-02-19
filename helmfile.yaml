@@ -1,0 +1,17 @@
+releases:
+  - name: rediscart
+    chart: redis
+    values:
+      - redis-values.yaml
+      - appRelicas: "1" # override value from "redis-values.yaml" parameter "appReplicas"
+      - volumeName: "redis-cart_data" # override volumeName from default "values.yaml" parameter "volumeName"
+
+  - name: emailservice
+    chart: microservice
+    values:
+      - email-service-values.yaml
+  
+  - name: cartservice
+    chart: microservice
+    values:
+      - cart-service-values.yaml

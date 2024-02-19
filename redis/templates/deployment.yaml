@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.appReplicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+      - name: {{ .Values.appName }}
+        image: "{{ .Values.appImage}}:{{ .Values.appVersion}}"
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        volumeMounts: # mount volume below into the container
+        - name: {{ .Values.volumeName}}
+          mountPath: {{ .Values.containerMountPath}} # path inside the container where we`re mounting volume.
+        livenessProbe:
+          initialDelaySeconds: 5 # wait 5 seconds then apply the 1st probe
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          tcpSocket:
+            port: 6379
+        readinessProbe:
+          initialDelaySeconds: 5 # wait 5 seconds then apply the 1st probe
+          periodSeconds: 5 # cat de des sa faca health probe (every 5 secs)
+          tcpSocket:
+           port: 6379
+        resources: 
+            request: # resource allocation
+              cpu: 700m # 0.1 CPU
+              memory: 200Mi # MebiBytes (Mi or MiB)
+            limits: # resource limit 
+              cpu: 125m
+              memory: 300Mi
+      volumes: # creating a volume "emptyDir" that automatically gets created when pod is created.
+      - name: {{ .Values.volumeName}}
+        emptyDir: {} 
