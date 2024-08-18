@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appName }}
+spec:
+  replicas: {{ .Values.appReplicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appName }}
+    spec:
+      containers:
+      - name: {{ .Values.appName }}
+        image: "{{ .Values.appImage}}:{{ .Values.appVersion }}" # trebuie sa fie intre ghilimele ca sa fie interpretat ca si un string si ":"
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        env:
+        {{- range .Values.containerEnvVars}} # range will take variable list defined (containerEnvVars) as an attribute, and it will go through that list and give us access to each element.
+        - name: {{ .name }}
+          value: {{ .value | quote }} #value has to be always in "" , so with function quote we can do this
+        {{- end}}
